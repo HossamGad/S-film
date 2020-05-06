@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Film Studio</title>
+</head>
+
+<body>
+	<h1>Film Studio</h1>
+	<ul id="list">
+	</ul>
+	<button id="gettext">All Films </button><br />
+	<button id="gettext1">Studio 1 </button>
+	<button id="gettext2">Studio 2 </button>
+	<button id="gettext3">Studio 3 </button>
+	<button id="gettext3">AllFilmStudio </button>
+
+	
+	<div>
+		<ul>
+			<li id="output">	</li>
+		</ul>
+	</div>
+	<div id="output1"></div>
+	<div id="output2"></div>
+	<div id="output3"></div>
+    <div class="container">
+		<table>
+			<thead>
+
+				<tr>
+					<th>ID	</th>
+					<th>Name	</th>
+					<th>Price	</th>
+				</tr>
+			</thead>
+			<tbody id="data">
+			</tbody>
+		</table>
+
+	</div>
+
+
+	<script >
+        fetch("https://localhost:44306/api/Film").then(res => {
+            res.json().then(
+                data => {
+                    console.log(data);
+                    if (data.length > 0) {
+                        var temp = "";
+                        data.forEach((u) => {
+                            temp += "<tr>";
+                            temp += "<td>" + u.FilmId + "</td>";
+                            temp += "<td>" + u.Name + "</td>";
+                            temp += "<td>" + u.Price + "</td>";
+                        })
+                        document.getElementById("data").innerHTML = temp;
+                    }
+
+                }
+            )
+        }
+			)
+	</script>
+</body>
+
+</html>
